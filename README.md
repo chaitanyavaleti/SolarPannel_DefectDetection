@@ -43,17 +43,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Requirements**
+## **Requirements**
 
-Python >= 3.10
-TensorFlow 2.15
-Streamlit
-Pillow
-NumPy
-Pandas (optional, for charts)
+-Python >= 3.10
+-TensorFlow 2.15
+-Streamlit
+-NumPy
+-Pandas (optional, for charts)
 
 
-**Usage**
+## **Usage**
 
 1.Place your trained classification model (solar_panel_condition_model.keras) in the project folder.
 
