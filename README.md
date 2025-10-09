@@ -63,6 +63,7 @@ streamlit run SolarPanel_App.py
 3. Upload a solar panel image.
 
 4. View the predicted condition, confidence, and optionally bounding boxes.
+<img width="1148" height="776" alt="image" src="https://github.com/user-attachments/assets/c52e5553-1bf9-47d6-8245-73cc499e4916" />
 
 
 ## 👤 Created By
