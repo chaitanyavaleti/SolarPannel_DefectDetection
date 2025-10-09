@@ -1,0 +1,5 @@
+train: /content/drive/MyDrive/SampleImages-resized
+val: /content/drive/MyDrive/SampleImages-resized
+
+nc: 6  # number of defect classes
+names: ['Bird-drop', 'Clean', 'Dusty', 'Electrical-damage', 'Physical-Damage', 'Snow-Covered']
