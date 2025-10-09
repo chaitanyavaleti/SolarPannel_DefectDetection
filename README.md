@@ -27,6 +27,7 @@ This Streamlit application allows users to upload images of solar panels and aut
 ```bash
 git clone https://github.com/yourusername/solar-panel-detection.git
 cd solar-panel-detection
+```
 
 **2. Create and activate a Python virtual environment:**
 ```bash
@@ -35,10 +36,12 @@ python -m venv venv
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
+```
 
 **3.Install dependencies:**
-
+```bash
 pip install -r requirements.txt
+```
 
 **Requirements**
 
@@ -61,3 +64,9 @@ streamlit run SolarPanel_App.py
 3. Upload a solar panel image.
 
 4. View the predicted condition, confidence, and optionally bounding boxes.
+
+
+## 👤 Created By
+
+Chaitanya Valeti (MAE4 [AIML-C-WD-E-B18)
+Built as a Mini project for the **AIML (Artificial Intelligence & Machine Learning)** domain at GUVI (HCL Tech).
