@@ -82,8 +82,9 @@ if uploaded_file is not None:
 
     # --- YOLO Obstruction Detection (optional) ---
     st.subheader("🧩 Obstruction Detection (YOLOv8)")
-    resized_img = image.resize((640, 640), resample=Image.Resampling.BILINEAR)
-
+    orig_h, orig_w = img_array.shape[:2]
+    resized_w, resized_h = 640, 640
+    resized_img = image.resize((resized_w, resized_h), resample=Image.Resampling.BILINEAR)
 
     with st.spinner("Running object detection..."):
         resized_array = np.array(resized_img)
@@ -99,18 +100,32 @@ if uploaded_file is not None:
 
     if len(filtered_indices) > 0:
         st.write(f"✅ {len(filtered_indices)} '{predicted_class}' Detections Found:")
+
         for i in filtered_indices:
             cls_id = int(boxes.cls[i])
             conf = float(boxes.conf[i])
             label = detector.names[cls_id]
             xyxy = boxes.xyxy[i].tolist()
+
+            # # Rescale coordinates to original image
+            # x1 = int(xyxy[0] * orig_w / resized_w)
+            # y1 = int(xyxy[1] * orig_h / resized_h)
+            # x2 = int(xyxy[2] * orig_w / resized_w)
+            # y2 = int(xyxy[3] * orig_h / resized_h)
+            
+            # xyxy = boxes.xyxy[i].tolist()
             x1, y1, x2, y2 = map(int, xyxy)
 
-            color = (0, 255, 0)  # green box
+            # Draw the bounding box
+            color = (0, 255, 0)  # green
             cv2.rectangle(result_img, (x1, y1), (x2, y2), color, 2)
-            cv2.putText(result_img, f"{label} {conf:.2f}", (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-            #st.write(f"- **{label}** ({conf:.2f}) — Box: {xyxy}")
+            # Show label + confidence %
+            text = f"{label} {conf*100:.1f}%"
+            cv2.putText(result_img, text, (x1, y1 - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+
+            #st.write(f"- **{label}** ({conf*100:.1f}%) — Box: {xyxy}")
 
         st.image(result_img, caption="Detected Obstructions", use_container_width=True)
     else:
